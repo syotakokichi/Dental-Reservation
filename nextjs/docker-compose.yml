@@ -1,0 +1,18 @@
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
+networks:
+  default:
+    name: nextjs_network
